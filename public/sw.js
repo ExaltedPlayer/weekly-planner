@@ -1,5 +1,5 @@
-const CACHE = "wplanner-v1";
-const ASSETS = ["/", "/index.html"];
+const CACHE = "wplanner-v2";
+const ASSETS = ["./", "./index.html"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
@@ -16,8 +16,8 @@ self.addEventListener("activate", (e) => {
 });
 
 self.addEventListener("fetch", (e) => {
-  // Network-first for API calls, cache-first for assets
-  if (e.request.url.includes("anthropic.com")) {
+  // Network-only for API calls (GitHub sync + any anthropic.com calls) — never cache
+  if (e.request.url.includes("api.github.com") || e.request.url.includes("anthropic.com")) {
     e.respondWith(fetch(e.request));
     return;
   }
