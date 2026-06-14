@@ -620,7 +620,13 @@ export default function WeeklyPlanner() {
         color: C.text, maxWidth: 680, margin: "0 auto", display: "flex", flexDirection: "column",
       }}>
         {/* Header */}
-        <div style={{ padding: "14px 14px 0", borderBottom: `1px solid ${C.border}`, paddingBottom: 10 }}>
+        <div style={{
+          paddingTop: "calc(14px + env(safe-area-inset-top))",
+          paddingLeft: 14,
+          paddingRight: 14,
+          paddingBottom: 10,
+          borderBottom: `1px solid ${C.border}`,
+        }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
             <div>
               <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: "0.08em", color: C.textBright }}>WEEKLY PLANNER</div>
